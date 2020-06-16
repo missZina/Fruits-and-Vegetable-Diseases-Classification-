@@ -1,0 +1,38 @@
+'''''''''''''''''''
+we imported image as a sample . we converted on gray color .
+we displayed the image by using rgb2gray () function.
+we used skimage filter threshold_otsu
+we displayed the image that called thresholded
+
+''''''''''''''''''''
+
+from skimage import color
+%matplotlib inline
+
+def imshow(im, title=None, **kwargs):
+    if 'cmap' not in kwargs:
+        kwargs['cmap'] = 'gray'
+    plt.figure()
+    plt.imshow(im, interpolation='none', **kwargs)
+    if title:
+        plt.title(title)
+    plt.axis('off')import numpy as np
+import matplotlib.pyplot as plt
+
+im = plt.imread('/content/drive/My Drive/own dataset/pepper diseases images/pepper_bacterial_spot.jpg')
+gray_im = color.rgb2gray(im)
+
+imshow(im)
+imshow(gray_im)
+#histogram
+from skimage.filters import threshold_otsu
+
+thresh = threshold_otsu(gray_im, nbins=5)
+
+thresholded = gray_im > thresh
+
+plt.figure()
+plt.hist(gray_im.ravel(), bins=100);
+plt.plot([thresh, thresh], [0, 6000], linewidth=3, color='r');
+
+imshow(thresholded)
