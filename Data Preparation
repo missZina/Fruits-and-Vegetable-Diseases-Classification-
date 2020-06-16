@@ -1,0 +1,60 @@
+#''''''
+we will use published dataset Citrus.it splitted into two subsets:
+1- Fruits:conatins four Classes.
+
+-Black spot contains 19 images.
+-Canker contains 78 images.
+-Greening contains 16 images.
+-Healthy contains 22 images
+-Scab contains 15 images
+
+2- Leaves:
+-Black spot contains 171 images.
+-Canker contains 163 images.
+-Greening contains 204 images.
+-Healthy contains 58 images.
+-Melanose contains 13 images.
+
+* As a second dataset we will use our own dataset.we extracted images from internet
+and we organized and labled it manually .
+''''''''''''''''''''''
+from keras.datasets import fashion_mnist
+from keras.utils import to_categorical
+from keras.models import Sequential
+from keras.layers import Conv2D
+from keras.layers import MaxPooling2D
+from keras.layers import Dense
+from keras.layers import Flatten
+from glob import glob
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import ndimage
+from skimage import io, img_as_float, color, exposure
+import pylab
+from keras.preprocessing import image
+from keras.preprocessing.image import load_img
+from keras.preprocessing.image import img_to_array
+# load dataset
+dataset= '../content/drive/My Drive/Citrus/Citrus/Fruits'
+#/////
+image_files = glob(dataset + '/*/*.jp*g')
+valid_image_files = glob(dataset + '/*/*.jp*g')
+folders = glob(dataset + '/*')
+(trainX)= image_files
+(testX)=image_files
+
+plt.imshow(image.load_img(np.random.choice(image_files)))
+plt.show()
+#image contour and histogram
+from PIL import Image
+from pylab import *
+# read image to array
+im=array(Image.open('/content/drive/My Drive/Citrus/Citrus/Fruits/Scab/18Catla.jpg').convert('L'))
+#Create new figure
+figure()
+# not use color
+gray()
+# show contours with origin upper left corner
+contour(im,origin='image')
+axis('equal')
+axis('off')
